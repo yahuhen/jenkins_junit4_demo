@@ -17,7 +17,7 @@ pipeline {
         stage('Test Results') {
 
             steps {
-
+                echo 'Run completed after script block'
             }
             post {
                 // If Maven was able to run the tests, even if some of the test
