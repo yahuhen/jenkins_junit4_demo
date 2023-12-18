@@ -2,14 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/yahuhen/jenkins_junit4_demo.git'
-            }
-        }
 
         stage('Build and Test') {
             steps {
+                git branch: 'main', url: 'https://github.com/yahuhen/jenkins_junit4_demo.git'
                 sh "mvn -Dmaven.test.failure.ignore=true clean test"
             }
         }
@@ -24,7 +20,6 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
